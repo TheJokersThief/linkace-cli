@@ -1,0 +1,10 @@
+{
+    "id": 85,
+    "user_id": 1,
+    "link_id": 23,
+    "note": "Interesting article, may be useful for later research about state machines in Go.",
+    "is_private": false,
+    "created_at": "2020-03-09T19:33:23.000000Z",
+    "updated_at": "2020-03-09T19:33:23.000000Z",
+    "deleted_at": null
+}
