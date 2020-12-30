@@ -1,7 +1,11 @@
-from marshmallow import Schema, fields
+from marshmallow import Schema, fields, INCLUDE
 
 
 class List(Schema):
+    class Meta:
+        # Include unknown fields in the deserialized output
+        unknown = INCLUDE
+
     id = fields.Int()
     user_id = fields.Int()
     name = fields.Str()
