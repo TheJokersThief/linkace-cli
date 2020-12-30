@@ -1,0 +1,16 @@
+{
+    "id": 85,
+    "user_id": 1,
+    "url": "https://duckduckgo.com",
+    "title": "DuckDuckGo — Privacy, simplified.",
+    "description": "The Internet privacy company that empowers you to seamlessly take control of your personal information online, without any tradeoffs.",
+    "icon": "fa fa-link",
+    "is_private": false,
+    "status": 1,
+    "check_disabled": false,
+    "lists": [],
+    "tags": [],
+    "created_at": "2020-03-09T19:33:23.000000Z",
+    "updated_at": "2020-03-09T19:33:23.000000Z",
+    "deleted_at": null
+}
