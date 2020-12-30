@@ -49,7 +49,17 @@ class LinkAce():
         req.raise_for_status()
         return req.json()
 
-    def post(self, url, params=None):
-        req = self.site.post(url, params=params)
+    def post(self, url, data=None):
+        req = self.site.post(url, json=data)
+        req.raise_for_status()
+        return req.json()
+
+    def patch(self, url, data=None):
+        req = self.site.patch(url, json=data)
+        req.raise_for_status()
+        return req.json()
+
+    def delete(self, url, data=None):
+        req = self.site.delete(url, json=data)
         req.raise_for_status()
         return req.json()
