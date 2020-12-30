@@ -23,6 +23,10 @@ pylint = "^2.6.0"
 pytest = "=5.0.1"
 pytest-cov = "*"
 mock = "*"
+responses = "*"
+
+[tool.pylint]
+disable = "import-error"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
