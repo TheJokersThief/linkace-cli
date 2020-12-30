@@ -37,10 +37,11 @@ class LinkAce():
         if enable_retries:
             retry_strategy = Retry(
                 total=3,
-                status_forcelist=[500, 502, 503, 504],
+                status_forcelist=[429, 500, 502, 503, 504],
                 backoff_factor=0.1
             )
             adapter = requests.adapters.HTTPAdapter(max_retries=retry_strategy)
+            self.site.mount("http://", adapter)
             self.site.mount("https://", adapter)
 
     def get(self, url, params=None):
