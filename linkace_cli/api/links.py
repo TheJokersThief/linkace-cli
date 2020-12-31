@@ -25,5 +25,5 @@ class Links(APIBase):
     def delete(self, id: int):
         return self.api.delete(f'links/{id}')
 
-    def update(self, link: models.Link):
-        return self.api.patch('links', link)
+    def update(self, id: int, link: models.Link):
+        return self.api.patch(f'links/{id}', link)
