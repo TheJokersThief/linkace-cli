@@ -4,14 +4,18 @@ import typer
 from rich import print
 from rich.console import Console
 from rich.panel import Panel
+from rich.traceback import install
 
 from linkace_cli.cli.links import links_cli
+from linkace_cli.cli.lists import lists_cli
 from linkace_cli.cli.helpers import shared_ctx
 
 app = typer.Typer()
 app.add_typer(links_cli, name="link")
+app.add_typer(lists_cli, name="list")
 
 console = Console()
+install()
 
 
 @app.callback()
