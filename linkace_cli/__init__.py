@@ -1,4 +1,7 @@
+import os
 import requests
+import sys
+import toml
 import typer
 
 from rich import print
@@ -24,14 +27,33 @@ install()
 
 @app.callback()
 def callback(
-    api_url: str = typer.Option(..., help="e.g. http://example.com/api/v1/"),
-    api_token: str = typer.Option(...)
+    api_url: str = typer.Option(None, help="e.g. http://example.com/api/v1/"),
+    api_token: str = typer.Option(None)
 ):
     """
     Interact with the LinkAce API
     """
-    shared_ctx['api_url'] = api_url
-    shared_ctx['api_token'] = api_token
+    home = os.environ.get('HOME', '~/')
+
+    if not os.path.exists(f"{home}/.config/linkace-cli"):
+        os.makedirs(f"{home}/.config/linkace-cli")
+    config_file = f"{home}/.config/linkace-cli/config.toml"
+
+    config = None
+    if os.path.isfile(config_file):
+        with open(config_file) as file:
+            config = toml.load(file)
+            shared_ctx['api_url'] = config['api_url']
+            shared_ctx['api_token'] = config['api_token']
+
+    if not config and not api_url and not api_token:
+        print(f'[bold red]Please either create a config file in {config_file} with the API URL and token or provide the --api-url and --api-token flags[/bold red]')
+        sys.exit(1)
+
+    if api_url:
+        shared_ctx['api_url'] = api_url
+    if api_token:
+        shared_ctx['api_token'] = api_token
 
 
 def main():

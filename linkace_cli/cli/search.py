@@ -62,5 +62,6 @@ def by_query(
     Search for tags by query
     """
     api = Search(base_url=shared_ctx['api_url'], api_token=shared_ctx['api_token'])
-    links = api.get_links_by_query(query)
+    with console.status("[bold green]Searching..."):
+        links = api.get_links_by_query(query)
     print_links(links)
