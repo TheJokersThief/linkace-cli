@@ -13,6 +13,9 @@ console = Console()
 
 
 def print_links(links: list):
+    """
+    Prints a list of link models in a consistent and (hopefully) pretty way
+    """
     # Get number of digits of the highest index we'll print, add 1 to account for full stop after number
     number_length = len(str(len(links))) + 1
     for index, link in enumerate(links):
@@ -43,6 +46,11 @@ def get(
     fetch_tags: bool = typer.Option(False, help="By default, no tag info is returned when getting all links. This fetches tag info for every link which can slow things down."),
     max_results: int = typer.Option(sys.maxsize, help="The max number of links to display.")
 ):
+    """
+    Get all links or, if --id is provided, get the details of just one link. Tag and list data
+    is stored separately from links so it's not included in the output of all links by default,
+    only when you supply the --fetch-tags flag.
+    """
     api = Links(base_url=shared_ctx['api_url'], api_token=shared_ctx['api_token'])
 
     with console.status("[bold green]Getting links..."):
@@ -73,6 +81,10 @@ def create(
     is_private: bool = False,
     check_disabled: bool = False
 ):
+    """
+    Create a new link with the info provided. Use the --interactive flag to open your environment's
+    $EDITOR. Any info provided via flags will prefill values in the interactive mode.
+    """
     api = Links(base_url=shared_ctx['api_url'], api_token=shared_ctx['api_token'])
 
     link = {
@@ -100,6 +112,9 @@ def create(
 def delete(
     id: int
 ):
+    """
+    Delete a link with the given ID
+    """
     api = Links(base_url=shared_ctx['api_url'], api_token=shared_ctx['api_token'])
     with console.status("[bold green]Deleting link..."):
         api.delete(id)
@@ -118,6 +133,10 @@ def update(
     is_private: bool = False,
     check_disabled: bool = False
 ):
+    """
+    Update a link with the info provided. Use the --interactive flag to open it in your environment's
+    $EDITOR. Any info provided via flags will prefill values in the interactive mode.
+    """
     api = Links(base_url=shared_ctx['api_url'], api_token=shared_ctx['api_token'])
 
     with console.status("[bold green]Getting link info..."):

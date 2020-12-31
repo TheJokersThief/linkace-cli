@@ -10,6 +10,10 @@ ABS_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def interactive_editor(template_filename: str = None, prefill_data: dict = None):
+    """
+    Uses the environment's defined editor to interactive edit the details of an object
+    such as a link. On save, it returns the contents of the file.
+    """
     with open(f'{ABS_DIR}/templates/{template_filename}') as file:
         template = file.read()
 
