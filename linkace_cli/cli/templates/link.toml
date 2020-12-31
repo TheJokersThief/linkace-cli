@@ -1,0 +1,18 @@
+title = ""
+url = ""
+#
+# To use a multi-line description, put your content inside """triple quotes"""
+description = ""
+#
+# Comma-separated tags (Will be created if they don't exist)
+tags = ""
+#
+# Comma-separated lists (Will be created if they don't exist)
+lists = ""
+#
+is_private = false
+check_disabled = false
+#
+########
+# Only title and URL are required
+########

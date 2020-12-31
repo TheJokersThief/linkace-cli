@@ -1,0 +1,44 @@
+{
+    "id": 652,
+    "user_id": 1,
+    "url": "https://www.facebook.com/",
+    "title": "(1) Facebook",
+    "description": "Example description",
+    "is_private": false,
+    "created_at": "2020-12-30T16:34:10.000000Z",
+    "updated_at": "2020-12-30T16:34:10.000000Z",
+    "deleted_at": null,
+    "icon": "brand.facebook",
+    "status": 1,
+    "check_disabled": false,
+    "lists": [],
+    "tags": [
+      {
+        "id": 6,
+        "user_id": 1,
+        "name": "bookmarks",
+        "is_private": false,
+        "created_at": "2020-12-29T19:06:57.000000Z",
+        "updated_at": "2020-12-29T19:06:57.000000Z",
+        "deleted_at": null,
+        "pivot": {
+          "link_id": 652,
+          "tag_id": 6
+        }
+      },
+      {
+        "id": 77,
+        "user_id": 1,
+        "name": "other",
+        "is_private": false,
+        "created_at": "2020-12-29T19:11:46.000000Z",
+        "updated_at": "2020-12-29T19:11:46.000000Z",
+        "deleted_at": null,
+        "pivot": {
+          "link_id": 652,
+          "tag_id": 77
+        }
+      }
+    ]
+  }
+  
