@@ -4,6 +4,10 @@ from linkace_cli import models
 
 
 class Link(Schema):
+    class Meta:
+        # Include unknown fields in the deserialized output
+        unknown = INCLUDE
+
     id = fields.Int()
     user_id = fields.Int()
     url = fields.Str(allow_none=True)

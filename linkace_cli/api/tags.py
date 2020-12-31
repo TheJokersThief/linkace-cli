@@ -32,3 +32,13 @@ class Tags(APIBase):
 
     def update(self, id: int, tag: models.Tag):
         return self.api.patch(f'tags/{id}', tag)
+
+    def links(self, id: int):
+        resp = self.api.get(f'tags/{id}/links')
+        resp = models.LinksPagination().load(resp)
+
+        links = resp['data']
+        while(resp['next_page_url']):
+            resp = models.LinksPagination().load(self.api.get(resp['next_page_url']))
+            links.extend(resp['data'])
+        return links
