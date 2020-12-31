@@ -119,7 +119,6 @@ def update(
         obj = toml.loads(edited_str)
 
     with console.status("[bold green]Updating tag..."):
-        print(obj)
         resp = api.update(id, obj)
 
     obj = models.Tag().load(resp)
