@@ -8,11 +8,13 @@ from rich.traceback import install
 
 from linkace_cli.cli.links import links_cli
 from linkace_cli.cli.lists import lists_cli
+from linkace_cli.cli.tags import tags_cli
 from linkace_cli.cli.helpers import shared_ctx
 
 app = typer.Typer()
 app.add_typer(links_cli, name="link")
 app.add_typer(lists_cli, name="list")
+app.add_typer(tags_cli, name="tag")
 
 console = Console()
 install()

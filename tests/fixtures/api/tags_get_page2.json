@@ -1,0 +1,42 @@
+{
+    "current_page": 2,
+    "data": [
+      {
+        "id": 79,
+        "user_id": 1,
+        "name": "tag1",
+        "is_private": false,
+        "created_at": "2020-12-31T00:00:21.000000Z",
+        "updated_at": "2020-12-31T00:00:21.000000Z",
+        "deleted_at": null
+      }
+    ],
+    "first_page_url": "http://example.com/api/v1/tags?page=1",
+    "from": 1,
+    "last_page": 2,
+    "last_page_url": "http://example.com/api/v1/tags?page=2",
+    "links": [
+      {
+        "url": null,
+        "label": "&laquo; Previous",
+        "active": false
+      },
+      {
+        "url": "http://example.com/api/v1/tags?page=1",
+        "label": 1,
+        "active": true
+      },
+      {
+        "url": null,
+        "label": "Next &raquo;",
+        "active": false
+      }
+    ],
+    "next_page_url": null,
+    "path": "http://example.com/api/v1/tags",
+    "per_page": "120",
+    "prev_page_url": null,
+    "to": 79,
+    "total": 79
+  }
+  
