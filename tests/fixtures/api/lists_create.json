@@ -1,0 +1,12 @@
+{
+    "id": 2,
+    "user_id": 1,
+    "name": "list1",
+    "description": null,
+    "is_private": false,
+    "created_at": "2020-12-31T00:00:21.000000Z",
+    "updated_at": "2020-12-31T00:00:21.000000Z",
+    "deleted_at": null,
+    "links": "http://hometower.local:3300/api/v1/lists/2/links"
+  }
+  
