@@ -76,10 +76,21 @@ class TestLinkAceAPI(unittest.TestCase):
 
         self.assertEqual(got, {})
 
-    # @responses.activate
-    # def test_link_update(self):
-    #     with open('tests/fixtures/api/links_get_one.json') as fixture:
-    #         responses.add(responses.GET, 'http://example.com/api/v1/links',
-    #                       json=json.load(fixture), status=200)
-    #     api = Links("http://example.com/api/v1/", "Token-ABC")
-    #     got = api.update()
+    @responses.activate
+    def test_link_update(self):
+        with open('tests/fixtures/api/links_update.json') as fixture:
+            responses.add(responses.PATCH, 'http://example.com/api/v1/links/652',
+                          json=json.load(fixture), status=200)
+        api = Links("http://example.com/api/v1/", "Token-ABC")
+
+        link = {
+            "url": "https://www.facebook.com/",
+            "title": "(1) Facebook",
+            "description": "Example description",
+            "is_private": False,
+            "check_disabled": False,
+            "tags": "bookmarks,other"
+        }
+        got = api.update(652, link)
+
+        self.assertEqual(got['title'], "A New Title")
