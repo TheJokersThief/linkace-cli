@@ -2,6 +2,8 @@ import requests
 from urllib.parse import urljoin
 from urllib3.util import Retry
 
+DEFAULT_TIMEOUT = 30  # seconds
+
 
 class LinkAceHTTPSession(requests.Session):
     """
@@ -10,6 +12,11 @@ class LinkAceHTTPSession(requests.Session):
     DEFAULT_USER_AGENT = "Linkace-CLI"
 
     def __init__(self, prefix_url, api_token, user_agent=None, *args, **kwargs):
+        self.timeout = DEFAULT_TIMEOUT
+        if "timeout" in kwargs:
+            self.timeout = kwargs["timeout"]
+            del kwargs["timeout"]
+
         super(LinkAceHTTPSession, self).__init__(*args, **kwargs)
         self.prefix_url = prefix_url
 
@@ -19,7 +26,7 @@ class LinkAceHTTPSession(requests.Session):
         self.headers.update({
             'Accept': 'application/json',
             'User-Agent': user_agent,
-            'Authorization': f'Bearer {api_token}'
+            'Authorization': f'Bearer {api_token}',
         })
 
     def request(self, method, url, *args, **kwargs):
