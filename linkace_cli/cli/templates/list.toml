@@ -1,0 +1,10 @@
+name = ""
+#
+# To use a multi-line description, put your content inside """triple quotes"""
+description = ""
+#
+is_private = false
+#
+########
+# Only name is required
+########

@@ -110,7 +110,7 @@ def create(
 
 @links_cli.command()
 def delete(
-    id: int
+    id: int = typer.Option(...)
 ):
     """
     Delete a link with the given ID
@@ -124,7 +124,7 @@ def delete(
 @links_cli.command()
 def update(
     id: int = typer.Option(...),
-    interactive: bool = typer.Option(False, help="Interactively create a link, uses your chosen EDITOR"),
+    interactive: bool = typer.Option(False, help="Interactively update a link, uses your chosen EDITOR"),
     title: str = None,
     url: str = None,
     description: str = None,
@@ -159,11 +159,12 @@ def update(
     link['tags'] = ", ".join([tag['name'] for tag in link['tags']])
     link['lists'] = ", ".join([alist['name'] for alist in link['lists']])
 
+    link = {key: link[key] for key in provided_info.keys()}
     if interactive:
         edited_str = interactive_editor('link.toml', prefill_data=link)
         link = toml.loads(edited_str)
 
-    with console.status("[bold green]Creating link..."):
+    with console.status("[bold green]Updating link..."):
         resp = api.update(id, link)
 
     link = models.Link().load(resp)

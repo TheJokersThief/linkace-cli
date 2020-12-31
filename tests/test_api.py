@@ -5,6 +5,7 @@ import responses
 import unittest
 
 from linkace_cli.api.links import Links
+from linkace_cli.api.lists import Lists
 from linkace_cli import models
 
 
@@ -94,3 +95,74 @@ class TestLinkAceAPI(unittest.TestCase):
         got = api.update(652, link)
 
         self.assertEqual(got['title'], "A New Title")
+
+    @responses.activate
+    def test_list_get_all(self):
+        with open('tests/fixtures/api/lists_get_page1.json') as fixture:
+            responses.add(responses.GET, 'http://example.com/api/v1/lists',
+                          json=json.load(fixture), status=200)
+
+        with open('tests/fixtures/api/lists_get_page2.json') as fixture:
+            responses.add(responses.GET, 'http://example.com/api/v1/lists',
+                          json=json.load(fixture), status=200)
+
+        api = Lists("http://example.com/api/v1/", "Token-ABC")
+        got = api.get(order_by=models.OrderBy.TITLE, order_dir=models.OrderDir.ASC)
+
+        self.assertEqual(len(got), 2)
+        self.assertEqual(got[0]['id'], 2)
+        self.assertEqual(
+            responses.calls[0].request.url,
+            "http://example.com/api/v1/lists?order_by=title&order_dir=asc"
+        )
+
+    @responses.activate
+    def test_list_get_one(self):
+        with open('tests/fixtures/api/lists_get_one.json') as fixture:
+            responses.add(responses.GET, 'http://example.com/api/v1/lists/2',
+                          json=json.load(fixture), status=200)
+        api = Lists("http://example.com/api/v1/", "Token-ABC")
+        got = api.get(id=2)
+
+        self.assertEqual(got['id'], 2)
+
+    @responses.activate
+    def test_list_create(self):
+        with open('tests/fixtures/api/lists_get_one.json') as fixture:
+            responses.add(responses.POST, 'http://example.com/api/v1/lists',
+                          json=json.load(fixture), status=200)
+        api = Lists("http://example.com/api/v1/", "Token-ABC")
+
+        obj = {
+            "name": "list1",
+            "description": None,
+            "is_private": False,
+        }
+        got = api.create(obj)
+        self.assertEqual(got['id'], 2)
+
+    @responses.activate
+    def test_list_delete(self):
+        with open('tests/fixtures/api/lists_delete.json') as fixture:
+            responses.add(responses.DELETE, 'http://example.com/api/v1/lists/123',
+                          json=json.load(fixture), status=200)
+        api = Lists("http://example.com/api/v1/", "Token-ABC")
+        got = api.delete(123)
+
+        self.assertEqual(got, {})
+
+    @responses.activate
+    def test_list_update(self):
+        with open('tests/fixtures/api/lists_update.json') as fixture:
+            responses.add(responses.PATCH, 'http://example.com/api/v1/lists/2',
+                          json=json.load(fixture), status=200)
+        api = Lists("http://example.com/api/v1/", "Token-ABC")
+
+        obj = {
+            "name": "list1",
+            "description": "New description",
+            "is_private": False,
+        }
+        got = api.update(2, obj)
+
+        self.assertEqual(got['description'], "New description")
