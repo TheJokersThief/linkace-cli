@@ -17,11 +17,11 @@ class Lists(APIBase):
             resp = self.api.get('lists', {'order_by': order_by, 'order_dir': order_dir})
             resp = models.ListsPagination().load(resp)
 
-            links = resp['data']
+            lists = resp['data']
             while(resp['next_page_url']):
                 resp = models.ListsPagination().load(self.api.get(resp['next_page_url']))
-                links.extend(resp['data'])
-            return links
+                lists.extend(resp['data'])
+            return lists
         return models.List().load(self.api.get(f'lists/{id}'))
 
     def create(self, link: models.List):
@@ -32,3 +32,13 @@ class Lists(APIBase):
 
     def update(self, id: int, link: models.List):
         return self.api.patch(f'lists/{id}', link)
+
+    def links(self, id: int):
+        resp = self.api.get(f'lists/{id}/links')
+        resp = models.LinksPagination().load(resp)
+
+        links = resp['data']
+        while(resp['next_page_url']):
+            resp = models.LinksPagination().load(self.api.get(resp['next_page_url']))
+            links.extend(resp['data'])
+        return links
