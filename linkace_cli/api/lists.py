@@ -3,7 +3,7 @@ from linkace_cli import models
 
 
 class Lists(APIBase):
-    """CRUD interaction for all things link-based"""
+    """CRUD interaction for all things list-based"""
     def get(self, id: int = None, order_by: models.OrderBy = None, order_dir: models.OrderDir = None):
         """
         Get all lists or a single list's details. The order can be modified using the enums in models.
