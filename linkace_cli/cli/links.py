@@ -156,11 +156,11 @@ def update(
         if val:
             link[key] = val
 
-    link['tags'] = ", ".join([tag['name'] for tag in link['tags']])
-    link['lists'] = ", ".join([alist['name'] for alist in link['lists']])
 
     link = {key: link[key] for key in provided_info.keys()}
     if interactive:
+        link['tags'] = ", ".join([tag['name'] for tag in link['tags']])
+        link['lists'] = ", ".join([alist['name'] for alist in link['lists']])
         edited_str = interactive_editor('link.toml', prefill_data=link)
         link = toml.loads(edited_str)
 
