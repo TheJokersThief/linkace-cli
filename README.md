@@ -3,7 +3,7 @@ A CLI for the API of LinkAce (https://github.com/Kovah/LinkAce)
 
 [![asciicast](https://asciinema.org/a/UO74II9ajDXaNjbwpmxaFdWZX.svg)](https://asciinema.org/a/UO74II9ajDXaNjbwpmxaFdWZX)
 
-![PyPi version](https://pypip.in/v/linkace-cli/badge.png)
+![PyPi version](https://badgers.space/pypi/version/linkace-cli)
 ![TheJokersThief](https://circleci.com/gh/TheJokersThief/linkace-cli.svg?style=svg)
 
 - [linkace-cli](#linkace-cli)
