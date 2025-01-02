@@ -156,7 +156,6 @@ def update(
         if val:
             link[key] = val
 
-
     link = {key: link[key] for key in provided_info.keys()}
     if interactive:
         link['tags'] = ", ".join([tag['name'] for tag in link['tags']])
