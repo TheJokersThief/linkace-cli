@@ -10,7 +10,7 @@ readme = "README.md"
 linkace = 'linkace_cli:main'
 
 [tool.poetry.dependencies]
-python = ">=3.7"
+python = "^3.7"
 requests = "^2.25.0"
 typer = "^0.3.2"
 pylint = "^2.6.0"
