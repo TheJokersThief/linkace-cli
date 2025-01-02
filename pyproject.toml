@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "linkace-cli"
-version = "1.1.0"
+version = "1.2.0"
 description = "A CLI for the LinkAce API"
 authors = ["Evan Smith <me@iamevan.me>"]
 license = "MIT"
