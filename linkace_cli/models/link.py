@@ -36,7 +36,7 @@ class LinksPagination(Schema):
     from_num = fields.Int(data_key="from")
     prev_page_url = fields.Str(allow_none=True, default=None)
     prev_page = fields.Str()
-    per_page = fields.Str()
+    per_page = fields.Int()
     path = fields.Str()
     next_page_url = fields.Str(allow_none=True, default=None)
     last_page_url = fields.Str()
